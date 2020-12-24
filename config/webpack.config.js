@@ -1,4 +1,13 @@
-'use strict';
+/**
+ * Description: reauired, the file description, reference link, etc.
+ * Created Date: 2020-12-23 4:36:41 PM
+ * Author: Liu Yi <ly@hcttop.com>
+ * -----
+ * Last Modified: 2020-12-23, 4:36:41 PM
+ * Modified By: Liu Yi <ly@hcttop.com>
+ */
+
+
 
 const fs = require('fs');
 const path = require('path');
@@ -325,6 +334,9 @@ module.exports = function (webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
+        // 文件路径别名
+        '@': path.resolve(__dirname, '../src'),
+        '@view': path.resolve(__dirname, '../src/view'),
         // Allows for better profiling with ReactDevTools
         ...(isEnvProductionProfile && {
           'react-dom$': 'react-dom/profiling',
