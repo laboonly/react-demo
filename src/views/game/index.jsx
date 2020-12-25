@@ -165,4 +165,4 @@ import './index.css';
     return null;
   }
   
-  
+  export default Game

@@ -336,7 +336,7 @@ module.exports = function (webpackEnv) {
         'react-native': 'react-native-web',
         // 文件路径别名
         '@': path.resolve(__dirname, '../src'),
-        '@view': path.resolve(__dirname, '../src/view'),
+        '@views': path.resolve(__dirname, '../src/views'),
         // Allows for better profiling with ReactDevTools
         ...(isEnvProductionProfile && {
           'react-dom$': 'react-dom/profiling',

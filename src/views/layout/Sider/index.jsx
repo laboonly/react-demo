@@ -9,13 +9,16 @@
 
 import React from "react"
 import { Layout } from "antd";
-
+import Menu from "./Menu"
 const { Sider } = Layout;
 
 const LayoutSider = () => {
     return(
-        <Sider>
-            <p>sider</p>
+        <Sider
+        collapsible
+        >
+            <div className="logo" />
+            <Menu />
         </Sider>
     );
 }
