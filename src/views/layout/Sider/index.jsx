@@ -7,15 +7,19 @@
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
-import React from "react"
+import React from "react";
 import { Layout } from "antd";
-import Menu from "./Menu"
-const { Sider } = Layout;
+import Menu from "./Menu";
+import './index.scss';
 
-const LayoutSider = () => {
+const { Sider } = Layout;
+const LayoutSider = (props) => {
+    const { sidebarCollapsed } = props;
     return(
         <Sider
         collapsible
+        collapsed={sidebarCollapsed}
+        trigger={null}
         >
             <div className="logo" />
             <Menu />

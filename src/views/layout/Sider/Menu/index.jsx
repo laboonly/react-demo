@@ -3,13 +3,13 @@
  * Created Date: 2020-12-25 3:10:20 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2020-12-25, 3:10:20 PM
+ * Last Modified: 2021-01-18, 1:21:51 PM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
 import React from "react"
 import {  Menu } from 'antd';
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
     AppstoreOutlined,
     BarChartOutlined,
@@ -23,12 +23,12 @@ import {
 
 const Meun = () => {
     return(
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
         <Menu.Item key="1" icon={<UserOutlined />}>
-          <Link to="/dashboard">nav 1</Link>
+          <Link to="/dashboard">首页</Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-          <Link to="/game">nav 2</Link>
+          <Link to="/game">游戏</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<UploadOutlined />}>
           nav 3

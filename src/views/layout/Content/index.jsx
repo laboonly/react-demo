@@ -1,23 +1,16 @@
-/*
- * Description: reauired, the file description, reference link, etc.
- * Created Date: 2020-12-24 9:19:25 AM
- * Author: Liu Yi <ly@hcttop.com>
- * -----
- * Last Modified: 2020-12-24, 9:19:25 AM
- * Modified By: Liu Yi <ly@hcttop.com>
- */
 
 import React from "react";
-import { Redirect, withRouter, Route, Switch } from "react-router-dom";
-import { Layout } from "antd"
+import {  Route, Switch } from "react-router-dom";
+import { Layout  } from "antd"
 import routeList from "@/config/routeMap";
 // import Game from '@/views/demo'
+import './index.scss'
 
 const { Content } = Layout;
 
 const LayoutContent = () => {
     return(
-        <Content>
+        <Content  className="main">
             <Switch>
                 {routeList.map((route) => {
                    return(  
