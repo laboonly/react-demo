@@ -1,6 +1,7 @@
 import React from "react";
-import { Row, Col, Icon } from "antd";
-import CountUp from "react-countuo";
+import { Row, Col } from "antd";
+import  Icon  from "@ant-design/icons"
+import CountUp from "react-countup";
 import "./index.scss";
 
 const chartList = [
@@ -34,7 +35,36 @@ const chartList = [
       const { handleSetLineChartData } = props;
       return (
           <div className="panel-group-container">
-
+            <Row gutter={40} className="panel-group">
+                {
+                    chartList.map((chart, i) => (
+                        <Col
+                            key={i}
+                            lg={6}
+                            sm={12}
+                            xs={12}
+                            onClick={handleSetLineChartData.bind(this, chart.type)}
+                            className="card-panel-col"
+                        >
+                            <div className="card-panel">
+                                <div className="card-panel-icon-wrapper">
+                                    <Icon
+                                        className={chart.type}
+                                        style={{ fontSize: 55, color: chart.color }}
+                                        type={chart.icon}
+                                    />
+                                </div>
+                                <div className="card-panel-description">
+                                    <p className="card-panel-text">{ chart.type }</p>
+                                    <CountUp end={chart.num} start={0} className="card-panel-num" /> 
+                                </div>
+                            </div>
+                        </Col>
+                    ))
+                }
+            </Row>
           </div>
       )
   }
+
+  export default PanelGroup;
