@@ -1,0 +1,223 @@
+/**
+ * Description: reauired, the file description, reference link, etc.
+ * Created Date: 2021-07-09 11:29:49 AM
+ * Author: Liu Yi <ly@hcttop.com>
+ * -----
+ * Last Modified: 2021-07-09, 11:38:52 AM
+ * Modified By: Liu Yi <ly@hcttop.com>
+ */
+
+const data = [
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+    {
+      key: '4',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '5',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '6',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+    {
+      key: '7',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '8',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '9',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+    {
+      key: '10',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+    {
+      key: '11',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '12',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '13',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+    {
+      key: '14',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '15',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '16',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+    {
+      key: '17',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '18',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '19',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+    {
+      key: '20',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+    {
+      key: '21',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '22',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '23',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+    {
+      key: '24',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '25',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '26',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+    {
+      key: '27',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '28',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '29',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+    {
+      key: '30',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+  ];
+
+  export default data;
