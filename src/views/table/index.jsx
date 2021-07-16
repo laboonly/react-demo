@@ -3,7 +3,7 @@
  * Created Date: 2021-07-07 4:26:25 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-12, 2:03:33 PM
+ * Last Modified: 2021-07-12, 3:34:08 PM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
@@ -60,8 +60,8 @@ const TableComponent = () => {
         key: 'action',
         render: (text, record) => (
             <Space size="middle">
-                <a>Invite {record.name}</a>
-                <a>Delete</a>
+                <a href="/">Invite {record.name}</a>
+                <a href="/">Delete</a>
             </Space>
         )
     }
@@ -117,7 +117,7 @@ const TableComponent = () => {
                     </Button>
                </Form.Item>
             </Form>
-            <Table dataSource={formData} columns={columns}  pagination={{ total: 30, showQuickJumper: true, showSizeChanger: true }} />;
+            <Table dataSource={formData} columns={columns}  pagination={{ total: 30, showQuickJumper: true, showSizeChanger: true }} />
         </div>
     )   
 }
