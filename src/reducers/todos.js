@@ -3,7 +3,7 @@
  * Created Date: 2021-07-13 4:34:52 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-13, 4:39:42 PM
+ * Last Modified: 2021-07-19, 3:58:11 PM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
@@ -14,6 +14,8 @@ const todos = (state = [], action) => {
                 ...state, 
                 {
                     id: action.id,
+                    text: action.text,
+                    completed: false
                 }
             ]
         case 'TOGGLE_TODO':

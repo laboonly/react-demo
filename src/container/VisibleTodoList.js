@@ -3,14 +3,15 @@
  * Created Date: 2021-07-16 10:13:05 AM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-16, 10:39:30 AM
+ * Last Modified: 2021-07-19, 3:55:27 PM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
-
+// 容器组件筛选组件状态
 import { connect } from "react-redux"
 import { toggleTodo } from '../reducers/actions'
-import TodoList from "../components/TodoList"
+import TodoList from "../components/TodoList/index.js"
 
+// 筛选可显示的列表
 const getVisibleTodos = (todos, filter) => {
     switch (filter) {
         case 'SHOW_COMPLETED':
@@ -18,6 +19,7 @@ const getVisibleTodos = (todos, filter) => {
         case 'SHOW_ACTIVE':
             return todos.filter(t => !t.completed)
         case 'SHOW_ALL':
+            return todos
         default:
             return todos
     }

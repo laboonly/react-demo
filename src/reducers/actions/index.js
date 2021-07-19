@@ -3,13 +3,14 @@
  * Created Date: 2021-07-13 4:26:13 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-13, 4:29:34 PM
+ * Last Modified: 2021-07-19, 1:46:19 PM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
+// action创建函数，生成action的方法
 
 let nextTodoId = 0;
 
-// 添加todo列表
+// 添加todo的action
 export const addTodo = text => {
     return {
         type: 'ADD_TODO',
@@ -18,7 +19,7 @@ export const addTodo = text => {
     }
 }
 
-// 筛选显示的列表
+// 筛选显示的action
 export const setVisibilityFilter = filter => {
     return {
         type: 'SET_VISIBILITY_FILTER',
@@ -26,7 +27,7 @@ export const setVisibilityFilter = filter => {
     }
 }
 
-// 切换todo列表显示状态
+// 切换todo列表action
 export const toggleTodo = id => {
     return {
         type: 'TOGGLE_TODO',

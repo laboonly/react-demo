@@ -3,7 +3,7 @@
  * Created Date: 2021-07-13 5:34:13 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-13, 5:59:39 PM
+ * Last Modified: 2021-07-13, 6:15:37 PM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
@@ -26,7 +26,7 @@ TodoList.propType = {
             id: PropTypes.number.isRequired,
             completed: PropTypes.bool.isRequired,
             text: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     onTodoClick: PropTypes.func.isRequired
 }

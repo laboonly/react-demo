@@ -3,9 +3,11 @@
  * Created Date: 2021-07-16 10:50:09 AM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-16, 10:50:09 AM
+ * Last Modified: 2021-07-19, 2:34:47 PM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
+
+// 得到当前过滤器并且渲染LINK
 
 import { connect } from "react-redux";
 import { setVisibilityFilter } from "../reducers/actions";
@@ -18,10 +20,9 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onclick: () => {
+        onClick: () => {
             dispatch(setVisibilityFilter(ownProps.filter))
         }
     }

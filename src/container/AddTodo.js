@@ -3,15 +3,15 @@
  * Created Date: 2021-07-16 11:06:54 AM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-16, 3:51:47 PM
+ * Last Modified: 2021-07-19, 2:34:45 PM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 // 添加代办事项容器组件
 import React from 'react'
-import { connect } from 'react-redux'  // connect 将容器组件跟内容组件链接
+import { connect } from 'react-redux'  // connect 将组件跟state链接
 import { addTodo } from '../reducers/actions'
 
-let Addtodo = ({ dispatch }) => {
+let AddTodo = ({ dispatch }) => {
     let input
 
     return (
@@ -39,6 +39,6 @@ let Addtodo = ({ dispatch }) => {
     )
 }
 
-Addtodo = connect()(Addtodo)
+AddTodo = connect()(AddTodo)
 
-export default Addtodo
+export default AddTodo
