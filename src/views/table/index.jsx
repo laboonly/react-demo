@@ -3,57 +3,56 @@
  * Created Date: 2021-07-07 4:26:25 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-12, 3:34:08 PM
+ * Last Modified: 2021-07-20, 4:17:51 PM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
 import React, { useEffect, useState } from 'react'
-import { Table, Tag, Space, Form, Input,Select, Button } from 'antd'
+import { Table, Space, Form, Input,Select, Button } from 'antd'
 import './index.scss'
 
 import data from './tableJson'
 
+import { tableList } from "@/api/table"
+
+
 const TableComponent = () => {
     const [formData, setFormDate] = useState(data);
-
+    const [pageQuery, setPageQuery] = useState({
+        pageNumber: 1,
+        pageSize: 10,
+        title: "",
+        star: "",
+        status:""
+    });
+    const [total, setTotal] =  useState(0)
     const [form] = Form.useForm();
-
+    
     const columns = [
     {
-        title: '姓名',
-        dataIndex: 'name',
-        key: 'name',
-        render: text => <a href="/">{text}</a>
+        title: '标题',
+        dataIndex: 'title',
+        key: 'title',
     },
     {
-        title: '年龄',
-        dataIndex: 'age',
-        key: 'age',
+        title: '作者',
+        dataIndex: 'author',
+        key: 'author',
     },
     {
-        title: '住址',
-        dataIndex: 'address',
-        key: 'address',
+        title: '阅读量',
+        dataIndex: 'readings',
+        key: 'readings',
     },
     {
         title: 'Tags',
-        key: 'tags',
-        dataIndex: 'tags',
-        render: tags => (
-            <>
-                {
-                    tags.map(tag => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                            color = 'volcano';
-                            }
-                            return (
-                                <Tag color={color} key="tag">{tag.toUpperCase()}</Tag>
-                            )
-                    })
-                }
-            </>
-        )
+        key: 'star',
+        dataIndex: 'star',
+    },
+    {
+        title: '状态',
+        key: 'status',
+        dataIndex: 'status'
     },
     {
         title: 'Action',
@@ -68,20 +67,40 @@ const TableComponent = () => {
     ];
     
     useEffect(() => {
-       
-    });
-
+       fecthData()
+    }, []);
+    const fecthData = () => {
+        tableList(pageQuery).then((response) => {
+            const list = response.data.data.items;
+            console.log('list', list)
+            const total = response.data.data.total;
+            setTotal(total)
+           setFormDate(list)
+        })
+    }
     const onFinish = (values) => {
         console.log('Success:', values);
-        console.log(getTableData(values))
-        setFormDate(getTableData(values))
+        setPageQuery(
+            {
+                ...pageQuery,
+                title: values.title,
+            }
+        )
+        fecthData()
     };
 
-    const getTableData = (form) => {
-            return  data.filter(x => 
-                x.name.indexOf(form.title) !== -1
-            )
-    };
+   
+
+    // 分页变化触发
+    const pageChange = (pagination) => {
+        setPageQuery(
+            {
+                ...pageQuery,
+                pageNumber: pagination,
+            }
+        )
+        fecthData()
+    }
 
     return (
         <div className="header" id="head">
@@ -117,7 +136,7 @@ const TableComponent = () => {
                     </Button>
                </Form.Item>
             </Form>
-            <Table dataSource={formData} columns={columns}  pagination={{ total: 30, showQuickJumper: true, showSizeChanger: true }} />
+            <Table dataSource={formData} columns={columns} onChange={pageChange}  pagination={{ total: total, showQuickJumper: true, showSizeChanger: true } } />
         </div>
     )   
 }
