@@ -3,20 +3,43 @@
  * Created Date: 2021-07-07 4:26:25 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-21, 5:45:16 PM
+ * Last Modified: 2021-07-22, 5:47:17 PM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
 import React, { useEffect, useState } from 'react'
-import { Table, Tag, Divider, Form, Input,Select, Button } from 'antd'
+import { Table, Tag, Divider, Form, Input,Select, Button, message } from 'antd'
 import './index.scss'
 import { EditOutlined, DeleteOutlined  } from '@ant-design/icons';
-import { tableList } from "@/api/table"
+import { tableList, deleteItem } from "@/api/table"
 import  EditForm  from './form/editForm'
 
 const TableComponent = () => {
-    const [formData, setFormDate] = useState();
+    // 表格数据
+    const [tableData, setTableDate] = useState();
     
+    // 进入页面获取表格数据,
+    // TODO 后面考虑使用 use-data-api
+    useEffect(() => {
+        fecthData()
+     }, []);
+ 
+     // 获取表格数据
+     const fecthData = () => {
+         tableList(pageQuery).then((response) => {
+             const list = response.data.data.items;
+             console.log('list', list)
+             const total = response.data.data.total;
+            
+             setTotal(total)
+             setTableDate(list)
+         })
+     }
+
+    // 表单数据
+    const [form] = Form.useForm();
+    
+    // 筛选条件API参数
     const pageQuery = {
         pageNumber: 1,
         pageSize: 10,
@@ -24,35 +47,113 @@ const TableComponent = () => {
         star: "",
         status:""
     }
-    const [total, setTotal] =  useState(0)
-    const [editModalVisible, setEditModalVisible] = useState(true)
-    const [form] = Form.useForm();
     
+    // 筛选完成
+    const onFinish = (values) => {
+        console.log('Success:', values);
+      
+        pageQuery.title = values.title
+        pageQuery.status = values.status
+        pageQuery.star = values.star
+        fecthData()
+    };
+
+    // 分页变化触发
+    const pageChange = (pagination) => {
+        console.log('pagination---->', pagination)
+        
+        pageQuery.pageNumber =  pagination.current
+        fecthData()
+    }
+    
+    // 表格总数
+    const [total, setTotal] =  useState(0)
+
+    // 弹窗显示与否
+    const [editModalVisible, setEditModalVisible] = useState(false)
+
+    // 当前编辑框数据
+    const [currentRowData, setCurrentRowData] = useState({
+        id: 0,
+        author: "",
+        date: "",
+        readings: 0,
+        star: "★",
+        status: "published",
+        title: ""
+    })
+       // 显示弹窗
+    const handleShow = (record) => {
+        console.log('record', record)
+        setCurrentRowData(record)
+        
+        setEditModalVisible(true)
+    }
+    // 弹窗取消
+    const handleCancel = () => {
+        console.log('close')
+        setEditModalVisible(false)
+    }
+    
+    // 弹窗编辑完成
+    const handleOk = () => {
+        // setEditModalVisible(true)
+        const { form } = this.formRef.props;
+        console.log(form)
+    }
+    
+    // 删除表格数据
+    const handDelete = async (record) => {
+       
+        const res = await deleteItem({id:record.id});
+        if(res) {
+            message.success("删除成功")
+            fecthData();
+        }
+        // deleteItem({id:record.id}).then(res => {
+        //     message.success("删除成功")
+        //     that.fetchData();
+        //   })
+    }
+
+    // 表格配置
     const columns = [
+    {
+        title: '序号',
+        dataIndex: 'id',
+        key: 'id',
+        sorter: (a, b) => a.id - b.id,
+        align: 'center'
+    },
     {
         title: '标题',
         dataIndex: 'title',
         key: 'title',
+        align: 'center'
     },
     {
         title: '作者',
         dataIndex: 'author',
         key: 'author',
+        align: 'center'
     },
     {
         title: '阅读量',
         dataIndex: 'readings',
         key: 'readings',
+        align: 'center'
     },
     {
         title: '重要度',
         key: 'star',
         dataIndex: 'star',
+        align: 'center'
     },
     {
         title: '状态',
         key: 'status',
         dataIndex: 'status',
+        align: 'center',
         render: (text) => { 
                 let color = text === "published" ? "green" : text === "deleted" ? "red" : ""; 
                                 
@@ -65,61 +166,35 @@ const TableComponent = () => {
     {
         title: '时间',
         key: 'date',
-        dataIndex: 'date'
+        dataIndex: 'date',
+        align: 'center'
     },
     {
         title: 'Action',
         key: 'action',
+        align: 'center',
+        // TODO 理解这里为什么要使用bind
         render: (text, record) => (
             <span>
-                <Button type="primary" shape="circle" icon={<EditOutlined />} title="编辑" />
+                <Button type="primary" shape="circle" icon={<EditOutlined />} onClick={handleShow.bind(null,record)} title="编辑" /> 
                 <Divider type="vertical" />
-                <Button type="primary" shape="circle" icon={<DeleteOutlined />} title="删除" />
+                <Button type="primary" shape="circle" icon={<DeleteOutlined />} onClick={handDelete.bind(null,record)} title="删除" />
             </span>
         )
     }
     ];
     
-    useEffect(() => {
-       fecthData()
-    }, []);
-    const fecthData = () => {
-        tableList(pageQuery).then((response) => {
-            const list = response.data.data.items;
-            console.log('list', list)
-            const total = response.data.data.total;
-           
-            setTotal(total)
-            setFormDate(list)
-        })
-    }
-    const onFinish = (values) => {
-        console.log('Success:', values);
-      
-        pageQuery.title = values.title
-        pageQuery.status = values.status
-        pageQuery.star = values.star
-        fecthData()
-    };
+    
 
-   
-
-    // 分页变化触发
-    const pageChange = (pagination) => {
-        console.log('pagination---->', pagination)
-        
-        pageQuery.pageNumber =  pagination.current
-        fecthData()
-    }
 
     return (
         <div className="header" id="head">
             <Form
-            className="filter-form"
-            name="basic"
-            layout="inline"
-            form={form}
-            onFinish={onFinish}
+                className="filter-form"
+                name="basic"
+                layout="inline"
+                form={form}
+                onFinish={onFinish}
             >
                 <Form.Item 
                 name="title"
@@ -145,8 +220,14 @@ const TableComponent = () => {
                     </Button>
                </Form.Item>
             </Form>
-            <Table dataSource={formData} columns={columns} onChange={pageChange}  pagination={{ total: total, showQuickJumper: true, showSizeChanger: true } } />
-            <EditForm  visible={editModalVisible} />
+            <Table  bordered dataSource={tableData} columns={columns} onChange={pageChange}  pagination={{ total: total, showQuickJumper: true, showSizeChanger: true } } />
+            <EditForm  
+                currentRowData={currentRowData}
+                wrappedComponentRef={formRef => this.formRef = formRef}
+                visible={editModalVisible} 
+                onCancel={handleCancel}
+                onOk={handleOk} 
+            />
         </div>
       
     )   
