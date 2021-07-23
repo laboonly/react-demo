@@ -3,7 +3,7 @@
  * Created Date: 2021-05-06 3:29:10 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-16, 1:59:53 PM
+ * Last Modified: 2021-07-23, 2:14:31 PM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
@@ -15,11 +15,13 @@ const Dashboard = Loadable({ loader: () => import(/*webpackChunkName:'Dashboard'
 const Game = Loadable({ loader: () => import(/*webpackChunkName:'Game'*/'@views/game') , loading: Loading});
 const Table = Loadable({ loader: () => import(/*webpackChunkName:'Game'*/'@views/table'), loading: Loading });
 const TodoList = Loadable({ loader: () => import(/*webpackChunkName:'Game'*/'@views/todo'), loading: Loading })
+const User = Loadable({ loader: () => import(/*webpackChunkName:'Game'*/'@views/user'), loading: Loading })
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
     { path: "/dashboard", component: Dashboard },
     { path: "/game", component: Game },
     { path: "/table", component: Table },
-    { path: "/todoList", component: TodoList }
+    { path: "/todoList", component: TodoList },
+    { path: "/user", component: User }
 ];
