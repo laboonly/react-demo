@@ -3,7 +3,7 @@
  * Created Date: 2021-07-21 4:46:30 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-22, 5:39:39 PM
+ * Last Modified: 2021-07-23, 10:33:36 AM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
@@ -14,7 +14,7 @@ import moment from "moment";
 import "moment/locale/zh-cn";
 moment.locale("zh-cn");
 
-const EditForm = ({currentRowData, visible, onOk, onCancel }) => {
+const EditForm = ({currentRowData, visible, onOk, onCancel, childRef }) => {
     const [form] = Form.useForm();
     const { id, author, date, readings, star, status, title } = currentRowData;
     console.log('currentRowData---->', currentRowData)
@@ -41,6 +41,7 @@ const EditForm = ({currentRowData, visible, onOk, onCancel }) => {
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 14 }}
                 form={form}
+                ref={childRef}
             >
                 <Form.Item
                     label="序号:"
@@ -51,6 +52,11 @@ const EditForm = ({currentRowData, visible, onOk, onCancel }) => {
                 <Form.Item 
                 label="标题:"
                 name="title"
+                rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
                 >
                     <Input placeholder="标题" />
                 </Form.Item>

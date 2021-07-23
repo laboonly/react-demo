@@ -3,15 +3,15 @@
  * Created Date: 2021-07-07 4:26:25 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-22, 5:47:17 PM
+ * Last Modified: 2021-07-23, 10:46:33 AM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Table, Tag, Divider, Form, Input,Select, Button, message } from 'antd'
 import './index.scss'
 import { EditOutlined, DeleteOutlined  } from '@ant-design/icons';
-import { tableList, deleteItem } from "@/api/table"
+import { tableList, deleteItem, editItem } from "@/api/table"
 import  EditForm  from './form/editForm'
 
 const TableComponent = () => {
@@ -95,11 +95,46 @@ const TableComponent = () => {
         setEditModalVisible(false)
     }
     
+    const formRef = useRef(null)
     // 弹窗编辑完成
     const handleOk = () => {
         // setEditModalVisible(true)
-        const { form } = this.formRef.props;
-        console.log(form)
+        // const { form } = formRef.current.props;
+        console.log(formRef.current)
+        formRef.current.validateFields().then(fieldsValue => {
+            console.log(fieldsValue)
+            const values = {
+                ...fieldsValue,
+                'star': "".padStart(fieldsValue['star'], '★'),
+                'date': fieldsValue['date'].format('YYYY-MM-DD HH:mm:ss'),
+              };
+             
+              editItem(values).then((response) => {
+                // form.resetFields();
+                // this.setState({ editModalVisible: false, editModalLoading: false });
+                message.success("编辑成功!")
+                setEditModalVisible(false)
+                fecthData()
+              }).catch(e => {
+                message.success("编辑失败,请重试!")
+                // setEditModalVisible(false)
+              })
+        }).catch(errorInfo => {
+            /*
+            errorInfo:
+              {
+                values: {
+                  username: 'username',
+                  password: 'password',
+                },
+                errorFields: [
+                  { name: ['password'], errors: ['Please input your Password!'] },
+                ],
+                outOfDate: false,
+              }
+            */
+           console.log(errorInfo)
+          }); 
     }
     
     // 删除表格数据
@@ -223,7 +258,7 @@ const TableComponent = () => {
             <Table  bordered dataSource={tableData} columns={columns} onChange={pageChange}  pagination={{ total: total, showQuickJumper: true, showSizeChanger: true } } />
             <EditForm  
                 currentRowData={currentRowData}
-                wrappedComponentRef={formRef => this.formRef = formRef}
+                childRef={formRef}
                 visible={editModalVisible} 
                 onCancel={handleCancel}
                 onOk={handleOk} 
