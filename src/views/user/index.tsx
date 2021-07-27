@@ -3,14 +3,14 @@
  * Created Date: 2021-07-23 2:07:25 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-26, 5:22:22 PM
+ * Last Modified: 2021-07-27, 9:29:02 AM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
 import * as React from 'react'
 // import { useEffect, useState } from 'react'
-import {  Card, Button, Table } from 'antd'
-
+import {  Card, Button, Table, Divider } from 'antd'
+import { EditOutlined, DeleteOutlined  } from '@ant-design/icons';
 import { getUsers } from "@/api/user"
 
 const User: React.FC = () => {
@@ -41,9 +41,29 @@ const User: React.FC = () => {
             dataIndex: 'description',
             key: 'description',
             align: 'center'
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            align: 'center',
+            // TODO 理解这里为什么要使用bind
+            render: (text: any, record: any) => (
+                <span>
+                    <Button type="primary" shape="circle" icon={<EditOutlined />} onClick={handleShow.bind(null, text, record)} title="编辑" /> 
+                    <Divider type="vertical" />
+                    <Button type="primary" shape="circle" icon={<DeleteOutlined />} onClick={handDelete.bind(null, text, record)} title="删除" />
+                </span>
+            )
         }
     ];
+    const handleShow = () => {
 
+    }
+
+
+    const handDelete = () => {
+        
+    }
 
      // 表格数据
      const [tableData, setTableDate] = React.useState();
@@ -59,7 +79,7 @@ const User: React.FC = () => {
         const res = await getUsers()
         
         const { users } = res.data
-        setTableDate(users)
+        setTableDate(users) 
         setTotal(users.length)
     }
 

@@ -3,7 +3,7 @@
  * Created Date: 2020-12-25 3:10:20 PM
  * Author: Liu Yi <ly@hcttop.com>
  * -----
- * Last Modified: 2021-07-23, 2:15:26 PM
+ * Last Modified: 2021-07-27, 9:25:40 AM
  * Modified By: Liu Yi <ly@hcttop.com>
  */
 
@@ -34,10 +34,10 @@ const Meun = () => {
           <Link to="/table" >表格</Link>
         </Menu.Item>
         <Menu.Item key="4" icon={<BarChartOutlined />}>
-          <Link to="/todoList" >todoList</Link>
+          <Link to="/todoList" >待办事项</Link>
         </Menu.Item>
         <Menu.Item key="5" icon={<CloudOutlined />}>
-          <Link to="/user" >TS Demo</Link>
+          <Link to="/user" >用户管理</Link>
         </Menu.Item>
         <Menu.Item key="6" icon={<AppstoreOutlined />}>
           nav 6
