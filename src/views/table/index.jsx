@@ -82,7 +82,8 @@ const TableComponent = () => {
         status: "published",
         title: ""
     })
-       // 显示弹窗
+    
+    // 显示弹窗
     const handleShow = (record) => {
         console.log('record', record)
         setCurrentRowData(record)
@@ -96,6 +97,7 @@ const TableComponent = () => {
     }
     
     const formRef = useRef(null)
+    
     // 弹窗编辑完成
     const handleOk = () => {
         // setEditModalVisible(true)

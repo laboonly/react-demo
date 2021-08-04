@@ -9,9 +9,12 @@
 
 import * as React from 'react'
 // import { useEffect, useState } from 'react'
-import {  Card, Button, Table, Divider } from 'antd'
+import {  Card, Button, Table, Divider, message } from 'antd'
 import { EditOutlined, DeleteOutlined  } from '@ant-design/icons';
-import { getUsers } from "@/api/user"
+import { getUsers, editUser } from "@/api/user"
+
+import  EditUserForm  from './form/edit-user-form'
+
 
 const User: React.FC = () => {
 
@@ -49,21 +52,87 @@ const User: React.FC = () => {
             // TODO 理解这里为什么要使用bind
             render: (text: any, record: any) => (
                 <span>
-                    <Button type="primary" shape="circle" icon={<EditOutlined />} onClick={handleShow.bind(null, text, record)} title="编辑" /> 
+                    <Button type="primary" shape="circle" icon={<EditOutlined />} onClick={handleEditUserShow.bind(null, text, record)} title="编辑" /> 
                     <Divider type="vertical" />
                     <Button type="primary" shape="circle" icon={<DeleteOutlined />} onClick={handDelete.bind(null, text, record)} title="删除" />
                 </span>
             )
         }
     ];
-    const handleShow = () => {
+    // 当前编辑框数据
+    const [currentEditRowData, setCurrentEditRowData] = React.useState({
+        id: "",
+        name: "",
+        role: "",
+        description: ""
+    })
 
+    //  显示编辑弹窗
+    const handleEditUserShow = (text: any, record: any) => {
+        console.log(text)
+        setEditUserModalVisible(true)
+        setCurrentEditRowData(record)
     }
 
 
     const handDelete = () => {
         
     }
+
+    // 编辑弹窗
+    const editFormRef = React.useRef<HtmlElmentTextInput>(null)
+
+    // 编辑弹窗确认
+    const handleEditOk = () => {
+        console.log(editFormRef.current)
+        editFormRef.current.validateFields().then(fieldsValue => {
+            console.log(fieldsValue)
+            const values = {
+                ...fieldsValue,
+                
+              };
+             
+              editUser(values).then((response) => {
+                // form.resetFields();
+                // this.setState({ editModalVisible: false, editModalLoading: false });
+                message.success("编辑成功!")
+                setEditUserModalVisible(false)
+                fecthUserData()
+              }).catch(e => {
+                message.success("编辑失败,请重试!")
+                // setEditModalVisible(false)
+              })
+        }).catch(errorInfo => {
+            /*
+            errorInfo:
+              {
+                values: {
+                  username: 'username',
+                  password: 'password',
+                },
+                errorFields: [
+                  { name: ['password'], errors: ['Please input your Password!'] },
+                ],
+                outOfDate: false,
+              }
+            */
+           console.log(errorInfo)
+          }); 
+    }
+
+    // 编辑弹窗取消
+    const handleEditCancel = () => {
+        console.log('close')
+        setEditUserModalVisible(false)
+    }
+
+    const handleAddUserShow = () => {
+
+    }
+    
+
+    // 弹窗显示与否
+    const [editUserModalVisible, setEditUserModalVisible] = React.useState(false)
 
      // 表格数据
      const [tableData, setTableDate] = React.useState();
@@ -85,13 +154,22 @@ const User: React.FC = () => {
 
     const title = (
         <span>
-          <Button type='primary' >添加用户</Button>
+          <Button type='primary' onClick={handleAddUserShow} >添加用户</Button>
         </span>
       )
     return (
+        <>
         <Card title={title}>
              <Table  bordered  dataSource={tableData} columns={columns}  pagination={{ total: total, showQuickJumper: true, showSizeChanger: true } } />
         </Card>
+        <EditUserForm  
+                currentEditRowData={currentEditRowData}
+                childRef={editFormRef}
+                visible={editUserModalVisible} 
+                onCancel={handleEditCancel}
+                onOk={handleEditOk} 
+            />
+        </>
     )
 }
 

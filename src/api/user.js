@@ -32,6 +32,7 @@ export function deleteUser(data) {
   })
 }
 
+// 编辑用户
 export function editUser(data) {
   return request({
     url: '/user/edit',
