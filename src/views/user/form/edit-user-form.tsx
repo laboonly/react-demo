@@ -33,7 +33,6 @@ const EditUserForm: React.FC<Props> = ({ currentEditRowData, visible, onCancel, 
         name: name,
         role: role,
         description: description,
-       
       }
     React.useEffect(() => {
         form.setFieldsValue(formInitValue)
@@ -60,6 +59,11 @@ const EditUserForm: React.FC<Props> = ({ currentEditRowData, visible, onCancel, 
                 <Form.Item
                     label="用户名称:"
                     name="name"
+                    rules={[
+                        {
+                          required: true,
+                        },
+                      ]}
                 >
                      <Input />
                 </Form.Item>

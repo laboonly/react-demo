@@ -11,10 +11,10 @@ import * as React from 'react'
 // import { useEffect, useState } from 'react'
 import {  Card, Button, Table, Divider, message } from 'antd'
 import { EditOutlined, DeleteOutlined  } from '@ant-design/icons';
-import { getUsers, editUser } from "@/api/user"
+import { getUsers, editUser, addUser, deleteUser } from "@/api/user"
 
 import  EditUserForm  from './form/edit-user-form'
-
+import  AddUserForm from './form/add-user-Form'
 
 const User: React.FC = () => {
 
@@ -59,50 +59,45 @@ const User: React.FC = () => {
             )
         }
     ];
-    // 当前编辑框数据
-    const [currentEditRowData, setCurrentEditRowData] = React.useState({
-        id: "",
-        name: "",
-        role: "",
-        description: ""
-    })
+   
 
-    //  显示编辑弹窗
-    const handleEditUserShow = (text: any, record: any) => {
-        console.log(text)
-        setEditUserModalVisible(true)
-        setCurrentEditRowData(record)
+    // 增加用户弹窗显示与否
+    const [addUserModalVisible, setAddUserModalVisible] = React.useState(false)
+
+    // 增加弹窗
+    const addFormRef = React.useRef(null) as { current: any }
+    
+    // 显示增加弹窗
+    const handleAddUserShow = () => {
+        setAddUserModalVisible(true)
     }
 
-
-    const handDelete = () => {
-        
+    // 增加弹窗取消
+    const handleAddCancel = () => {
+        setAddUserModalVisible(false)
     }
 
-    // 编辑弹窗
-    const editFormRef = React.useRef<HtmlElmentTextInput>(null)
-
-    // 编辑弹窗确认
-    const handleEditOk = () => {
-        console.log(editFormRef.current)
-        editFormRef.current.validateFields().then(fieldsValue => {
+    // 增加弹窗确认
+    const handleAddOk = () => {
+        addFormRef.current.validateFields().then((fieldsValue: any) => {
             console.log(fieldsValue)
             const values = {
                 ...fieldsValue,
-                
               };
              
-              editUser(values).then((response) => {
+              addUser(values).then((response) => {
                 // form.resetFields();
                 // this.setState({ editModalVisible: false, editModalLoading: false });
-                message.success("编辑成功!")
-                setEditUserModalVisible(false)
+                console.log(response)
+                message.success("增加成功!")
+                setAddUserModalVisible(false)
                 fecthUserData()
               }).catch(e => {
-                message.success("编辑失败,请重试!")
+                  console.log(e)
+                message.success("增加失败,请重试!")
                 // setEditModalVisible(false)
               })
-        }).catch(errorInfo => {
+        }).catch((errorInfo: any )=> {
             /*
             errorInfo:
               {
@@ -116,8 +111,78 @@ const User: React.FC = () => {
                 outOfDate: false,
               }
             */
-           console.log(errorInfo)
-          }); 
+            console.log(errorInfo)
+        }); 
+    }
+
+    // 当前编辑框数据
+     const [currentEditRowData, setCurrentEditRowData] = React.useState({
+        id: "",
+        name: "",
+        role: "",
+        description: ""
+    })
+
+
+    //  显示编辑弹窗
+    const handleEditUserShow = (text: any, record: any) => {
+        console.log(text)
+        setEditUserModalVisible(true)
+        setCurrentEditRowData(record)
+    }
+
+
+    const handDelete = async (text: any, record: any) => {
+        console.log(text)
+        const res = await deleteUser({id:record.id});
+        if(res) {
+            message.success("删除成功")
+            fecthUserData();
+        }
+    }
+    
+    // 编辑弹窗
+    const editFormRef = React.useRef(null) as { current: any }
+
+    // 编辑弹窗确认
+    const handleEditOk = () => {
+        console.log(editFormRef.current)
+        
+        editFormRef.current.validateFields().then((fieldsValue: any) => {
+            console.log(fieldsValue)
+            const values = {
+                ...fieldsValue,
+              };
+             
+              editUser(values).then((response) => {
+                // form.resetFields();
+                // this.setState({ editModalVisible: false, editModalLoading: false });
+                console.log(response)
+                message.success("编辑成功!")
+                setEditUserModalVisible(false)
+                fecthUserData()
+              }).catch(e => {
+                  console.log(e)
+                message.success("编辑失败,请重试!")
+                // setEditModalVisible(false)
+              })
+        }).catch((errorInfo: any )=> {
+            /*
+            errorInfo:
+              {
+                values: {
+                  username: 'username',
+                  password: 'password',
+                },
+                errorFields: [
+                  { name: ['password'], errors: ['Please input your Password!'] },
+                ],
+                outOfDate: false,
+              }
+            */
+            console.log(errorInfo)
+        }); 
+        
     }
 
     // 编辑弹窗取消
@@ -126,12 +191,9 @@ const User: React.FC = () => {
         setEditUserModalVisible(false)
     }
 
-    const handleAddUserShow = () => {
-
-    }
     
-
-    // 弹窗显示与否
+    
+    // 编辑弹窗显示与否
     const [editUserModalVisible, setEditUserModalVisible] = React.useState(false)
 
      // 表格数据
@@ -169,6 +231,12 @@ const User: React.FC = () => {
                 onCancel={handleEditCancel}
                 onOk={handleEditOk} 
             />
+        <AddUserForm
+            visible={addUserModalVisible} 
+            childRef={addFormRef}
+            onCancel={handleAddCancel}
+            onOk={handleAddOk} 
+        />
         </>
     )
 }
