@@ -12,14 +12,14 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 // import { connect } from "react-redux";
 // import { getUserInfo } from "@/store/actions";
 import Layout from "@/views/layout";
-// import Login from "@/views/login";
+import Login from "@/views/login";
 class Router extends React.Component {
   render() {
     // const { token, role, getUserInfo } = this.props;
     return (
       <HashRouter>
         <Switch>
-          {/* <Route exact path="/login" component={Login} /> */}
+          <Route exact path="/login" component={Login} />
           <Route
             path="/"
             render={() => {
