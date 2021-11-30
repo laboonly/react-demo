@@ -10,7 +10,7 @@
 // 得到当前过滤器并且渲染LINK
 
 import { connect } from "react-redux";
-import { setVisibilityFilter } from "../reducers/actions";
+import { setVisibilityFilter } from "../store/actions";
 import Link from '../components/TodoList/Link'
 
 

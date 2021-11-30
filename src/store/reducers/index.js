@@ -10,14 +10,15 @@
 import { combineReducers  } from "redux";
 import todos from "./todos";
 import visibilityFilter  from "./visibilityFilter";
-
+import user from "./user"
 
 // combineReducers 生成store树
-const todoApp = combineReducers(
+const reducer = combineReducers(
     {
         todos,
-        visibilityFilter
+        visibilityFilter,
+        user
     }
 )
 
-export default todoApp
+export default reducer

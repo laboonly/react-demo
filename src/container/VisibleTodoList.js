@@ -8,7 +8,7 @@
  */
 // 容器组件筛选组件状态
 import { connect } from "react-redux"
-import { toggleTodo } from '../reducers/actions'
+import { toggleTodo } from '../store/actions'
 import TodoList from "../components/TodoList/index.js"
 
 // 筛选可显示的列表

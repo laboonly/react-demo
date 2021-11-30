@@ -9,7 +9,7 @@
 // 添加代办事项容器组件
 import React from 'react'
 import { connect } from 'react-redux'  // connect 将组件跟state链接
-import { addTodo } from '../reducers/actions'
+import { addTodo } from '../store/actions'
 
 let AddTodo = ({ dispatch }) => {
     let input

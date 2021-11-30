@@ -9,12 +9,12 @@
 
 import React, { Component } from 'react';
 import { Provider } from "react-redux";
-import { createStore } from 'redux'
+
 import { ConfigProvider } from "antd";
-import todoApp from './reducers'
+import store from './store'
 import Router from "./router";
 
-let store = createStore(todoApp)
+
 
 class App extends Component {
   render() { 
