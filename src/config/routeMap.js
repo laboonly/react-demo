@@ -23,5 +23,5 @@ export default [
     { path: "/game", component: Game },
     { path: "/table", component: Table },
     { path: "/todoList", component: TodoList },
-    { path: "/user", component: User }
+    { path: "/user", component: User, roles: ["admin","editor"] }
 ];
