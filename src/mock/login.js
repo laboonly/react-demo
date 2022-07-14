@@ -1,12 +1,3 @@
-/**
- * Description: reauired, the file description, reference link, etc.
- * Created Date: 2021-07-26 3:38:12 PM
- * Author: Liu Yi <ly@hcttop.com>
- * -----
- * Last Modified: 2021-07-26, 3:38:52 PM
- * Modified By: Liu Yi <ly@hcttop.com>
- */
-
 const tokens = {
     admin: "admin-token",
     guest: "guest-token",

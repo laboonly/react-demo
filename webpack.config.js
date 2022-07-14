@@ -1,12 +1,5 @@
-/**
- * Description: reauired, the file description, reference link, etc.
- * Created Date: 2021-07-26 11:02:41 AM
- * Author: Liu Yi <ly@hcttop.com>
- * -----
- * Last Modified: 2021-07-26, 4:58:39 PM
- * Modified By: Liu Yi <ly@hcttop.com>
- */
- var path = require('path');
+const path = require('path');
+ const webpack = require('webpack');
  function resolve (dir) {
     return path.join(__dirname, '..', dir)
     }
@@ -52,4 +45,9 @@ module.exports = {
 
     // ]
     // Other options...
+    plugins:[
+        new webpack.DefinePlugin({
+            process: {env: {}}
+        })
+    ]
 };

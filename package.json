@@ -14,7 +14,7 @@
     "@types/node": "^16.4.1",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
-    "antd": "^4.9.4",
+    "antd": "^4.21.6",
     "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.0",
@@ -48,6 +48,7 @@
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
     "js-cookie": "^3.0.1",
+    "konva": "^8.3.10",
     "mini-css-extract-plugin": "0.11.3",
     "mockjs": "^1.1.0",
     "moment": "^2.29.1",
@@ -61,16 +62,18 @@
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "5.0.2",
     "prompts": "2.4.0",
-    "react": "^16.13.1",
+    "react": "17.0.0",
     "react-app-polyfill": "^2.0.0",
     "react-countup": "^4.3.3",
     "react-dev-utils": "^11.0.1",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.13.1",
+    "react-konva": "17.0.2-6",
     "react-loadable": "^5.5.0",
     "react-redux": "^7.2.6",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.3.0",
+    "react-scripts": "5.0.1",
     "redux": "^4.1.0",
     "redux-thunk": "^2.4.1",
     "resolve": "1.18.1",
@@ -165,10 +168,14 @@
       "react-app"
     ]
   },
+  "resolutions": {
+      "react-error-overlay": "6.0.9"
+  },
   "devDependencies": {
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
     "@types/react-router-dom": "^5.3.2",
-    "babel-plugin-module-resolver": "^4.1.0"
+    "babel-plugin-module-resolver": "^4.1.0",
+    "react-error-overlay": "6.0.9"
   }
 }

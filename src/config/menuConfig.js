@@ -34,6 +34,12 @@ const menuList = [
         icon: "user",
         roles: ["admin", "editor"]
     },
+    {
+        title: "Demo",
+        path: "/demo",
+        icon: "user",
+        roles: ["admin", "editor"]
+    }
 ]
 
 export default menuList

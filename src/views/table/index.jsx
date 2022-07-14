@@ -163,7 +163,7 @@ const TableComponent = () => {
         align: 'center'
     },
     {
-        title: '标题',
+        title: '标题222',
         dataIndex: 'title',
         key: 'title',
         align: 'center'
