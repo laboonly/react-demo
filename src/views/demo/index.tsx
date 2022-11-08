@@ -56,7 +56,7 @@ const Demo : FC = () => {
     }
     setLinePoint({
       ...linePoints,
-      points: [linePoints.points[0], linePoints.points[1], linePoints.points[0], e.evt.offsetY, e.evt.offsetX - 5, e.evt.offsetY - 5],
+      points: [linePoints.points[0], linePoints.points[1], linePoints.points[0], e.evt.offsetY - 5, e.evt.offsetX - 5, e.evt.offsetY - 5],
     })
   }
 

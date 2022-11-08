@@ -39,6 +39,12 @@ const menuList = [
         path: "/demo",
         icon: "user",
         roles: ["admin", "editor"]
+    },
+    {
+        title: "Iframe",
+        path: "/iframe",
+        icon: "user",
+        roles: ["admin", "editor"]
     }
 ]
 

@@ -1,12 +1,3 @@
-/**
- * Description: reauired, the file description, reference link, etc.
- * Created Date: 2021-07-16 10:50:09 AM
- * Author: Liu Yi <ly@hcttop.com>
- * -----
- * Last Modified: 2021-07-19, 2:34:47 PM
- * Modified By: Liu Yi <ly@hcttop.com>
- */
-
 // 得到当前过滤器并且渲染LINK
 
 import { connect } from "react-redux";

@@ -1,13 +1,3 @@
-/**
- * Description: reauired, the file description, reference link, etc.
- * Created Date: 2021-05-06 3:29:10 PM
- * Author: Liu Yi <ly@hcttop.com>
- * -----
- * Last Modified: 2021-07-23, 2:14:31 PM
- * Modified By: Liu Yi <ly@hcttop.com>
- */
-
-
 import Loadable from 'react-loadable';
 import Loading from '@/components/Loading'
 
@@ -17,7 +7,7 @@ const Table = Loadable({ loader: () => import(/*webpackChunkName:'Game'*/'@views
 const TodoList = Loadable({ loader: () => import(/*webpackChunkName:'Game'*/'@views/todo'), loading: Loading });
 const User = Loadable({ loader: () => import(/*webpackChunkName:'Game'*/'@views/user'), loading: Loading });
 const Demo = Loadable({ loader: () => import(/*webpackChunkName:'Game'*/'@views/demo'), loading: Loading });
-
+const Iframe = Loadable({ loader: () => import(/*webpackChunkName:'Game'*/'@views/iframe'), loading: Loading });
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
     { path: "/dashboard", component: Dashboard },
@@ -25,5 +15,6 @@ export default [
     { path: "/table", component: Table },
     { path: "/todoList", component: TodoList },
     { path: "/user", component: User, roles: ["admin","editor"] },
-    { path: "/demo", component: Demo }
+    { path: "/demo", component: Demo },
+    { path: "/iframe", component: Iframe }
 ];
