@@ -20,10 +20,13 @@ const LayoutContent = (props) => {
     return(
         <Content  className="main">
             <Switch>
-                {routeList.map((route) => {
+                {routeList.map((route, index) => {
+                    console.log('index', index);
                    return(  
                     handleFilter(route) && (
-                        <Route
+                        index === 0 ? <Route IndexRoute component={route.component}
+                        key={route.path}
+                        /> : <Route
                         component={route.component}
                         key={route.path}
                         path={route.path}
